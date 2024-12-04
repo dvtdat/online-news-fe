@@ -1,25 +1,3 @@
-<div align="center">
-
-<h3 align="center">Online News Platform</h3>
-
-<p align="center">
-A convenient printing service application for university students.
-<br />
-</p>
-</div>
-ing services for university students.
-
-### Built With
-
-<a id="built-with"></a>
-
-- [React](https://react.dev/)
-- [TanStack Router](https://tanstack.com/router/latest)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Zustand](https://zustand.surge.sh/)
-
-<a id="getting-started"></a>
-
 ## Getting Started
 
 <a id="prerequisites"></a>
