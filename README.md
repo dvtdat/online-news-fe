@@ -1,19 +1,13 @@
 <div align="center">
-<img src="public/hcmut.png" alt="Logo" width="200" height="200">
 
-<h3 align="center">Student Smart Printing Service</h3>
+<h3 align="center">Online News Platform</h3>
 
 <p align="center">
 A convenient printing service application for university students.
 <br />
 </p>
 </div>
-
-<a id="about-the-project"></a>
-
-## About This Project
-
-This application was developed as part of the _Software Engineering - CO3001_ course at the Ho Chi Minh City University of Technology (HCMUT), a member of the Vietnam National University, Ho Chi Minh City. The project aims to create a web-based platform offering convenient printing services for university students.
+ing services for university students.
 
 ### Built With
 
@@ -68,14 +62,6 @@ yarn dev
 ```
 
 The application should now be running on `http://localhost:3000`.
-
-## Features
-
-- Student Authentication: Integrates with HCMUT Single Sign-On (SSO) for secure login.
-- Payment Gateway: Supports transactions through BKPay for payment processing.
-- Responsive Design: Accessible via both desktop and mobile devices.
-- Job Management: Allows students to upload and manage their print jobs with options for customization.
-- Cost Tracking: Provides real-time tracking of printing costs and balances.
 
 ## Convention
 
