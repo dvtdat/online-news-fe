@@ -22,7 +22,7 @@ function LandingPage() {
             <div className="flex size-2/5 flex-col items-center justify-center rounded-lg bg-white p-10">
               <div className="flex size-fit flex-col items-center">
                 <div className="text-7xl font-black text-hcmut-dark">
-                  BKPrint<span className="text-hcmut-light">Hub</span>
+                  BK<span className="text-hcmut-light">News</span>
                 </div>
                 <div className="mt-2 text-xl font-bold text-hcmut-dark">
                   Dịch vụ in ấn thông minh

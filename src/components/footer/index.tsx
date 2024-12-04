@@ -6,24 +6,19 @@ const Footer = () => {
       <div className="my-14 grid size-full grid-cols-2 gap-10 2xl:grid-cols-4">
         <div className="size-full items-center justify-center">
           <Logo />
-          <div className="mt-4 w-3/4">© 2024 Smart Printing Project.</div>
+          <div className="mt-4 w-3/4">© 2024 Online News Project.</div>
         </div>
-        <div>
-          <div className="text-lg font-bold">Development Team</div>
-          <div className="mt-4">Hoàng Công Minh</div>
-          <div className="mt-2">Hà Nguyễn Bảo Phúc</div>
-          <div className="mt-2">Đỗ Quang Hào</div>
-        </div>
+        <div></div>
         <div>
           <div className="text-lg font-bold">Development Team</div>
           <div className="mt-4">Đoàn Viết Tiến Đạt</div>
-          <div className="mt-2">Đào Anh Phúc</div>
+          <div className="mt-2">Nguyễn Xuân Sơn</div>
         </div>
         <div>
           <div className="text-lg font-bold">Project Information</div>
           <div className="mt-4">HCMC University of Technology</div>
-          <div className="mt-2">Software Engineering Course (CO3001)</div>
-          <div className="mt-2">Supervised by Prof. Truong Tuan Anh</div>
+          <div className="mt-2">Database Systems (CO2013)</div>
+          <div className="mt-2">Supervised by Mr. Do Thanh Thai</div>
         </div>
       </div>
     </div>
