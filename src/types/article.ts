@@ -8,11 +8,11 @@ export enum ArticleStatus {
 export type Article = {
   id: number;
   articleManagerId: number;
-  writerPenname: string;
+  writerpenname: string;
   title: string;
   content: string;
-  createdAt: Date;
-  submittedAt: Date;
-  publishedAt: Date;
+  createdat: Date;
+  submittedat: Date;
+  publishedat: Date;
   status: ArticleStatus;
 };

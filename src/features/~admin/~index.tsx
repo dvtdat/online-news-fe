@@ -34,7 +34,7 @@ function AdminPage() {
                 Tag Management
               </Link>
               <Link
-                to={'/admin/user'}
+                to={'/admin/article'}
                 className="flex h-32 w-full flex-row items-center justify-center rounded-lg border border-primary bg-white text-2xl font-bold text-primary shadow-lg transition-all duration-100 hover:bg-primary hover:text-white"
               >
                 Article Management

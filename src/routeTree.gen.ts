@@ -18,6 +18,7 @@ import { Route as HomeIndexImport } from './features/~home/~index'
 import { Route as AdminIndexImport } from './features/~admin/~index'
 import { Route as AdminUserIndexImport } from './features/~admin/~user/~index'
 import { Route as AdminTagIndexImport } from './features/~admin/~tag/~index'
+import { Route as AdminArticleIndexImport } from './features/~admin/~article/~index'
 
 // Create/Update Routes
 
@@ -63,6 +64,12 @@ const AdminTagIndexRoute = AdminTagIndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const AdminArticleIndexRoute = AdminArticleIndexImport.update({
+  id: '/admin/article/',
+  path: '/admin/article/',
+  getParentRoute: () => rootRoute,
+} as any)
+
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
@@ -102,6 +109,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SignupIndexImport
       parentRoute: typeof rootRoute
     }
+    '/admin/article/': {
+      id: '/admin/article/'
+      path: '/admin/article'
+      fullPath: '/admin/article'
+      preLoaderRoute: typeof AdminArticleIndexImport
+      parentRoute: typeof rootRoute
+    }
     '/admin/tag/': {
       id: '/admin/tag/'
       path: '/admin/tag'
@@ -127,6 +141,7 @@ export interface FileRoutesByFullPath {
   '/home': typeof HomeIndexRoute
   '/login': typeof LoginIndexRoute
   '/signup': typeof SignupIndexRoute
+  '/admin/article': typeof AdminArticleIndexRoute
   '/admin/tag': typeof AdminTagIndexRoute
   '/admin/user': typeof AdminUserIndexRoute
 }
@@ -137,6 +152,7 @@ export interface FileRoutesByTo {
   '/home': typeof HomeIndexRoute
   '/login': typeof LoginIndexRoute
   '/signup': typeof SignupIndexRoute
+  '/admin/article': typeof AdminArticleIndexRoute
   '/admin/tag': typeof AdminTagIndexRoute
   '/admin/user': typeof AdminUserIndexRoute
 }
@@ -148,6 +164,7 @@ export interface FileRoutesById {
   '/home/': typeof HomeIndexRoute
   '/login/': typeof LoginIndexRoute
   '/signup/': typeof SignupIndexRoute
+  '/admin/article/': typeof AdminArticleIndexRoute
   '/admin/tag/': typeof AdminTagIndexRoute
   '/admin/user/': typeof AdminUserIndexRoute
 }
@@ -160,6 +177,7 @@ export interface FileRouteTypes {
     | '/home'
     | '/login'
     | '/signup'
+    | '/admin/article'
     | '/admin/tag'
     | '/admin/user'
   fileRoutesByTo: FileRoutesByTo
@@ -169,6 +187,7 @@ export interface FileRouteTypes {
     | '/home'
     | '/login'
     | '/signup'
+    | '/admin/article'
     | '/admin/tag'
     | '/admin/user'
   id:
@@ -178,6 +197,7 @@ export interface FileRouteTypes {
     | '/home/'
     | '/login/'
     | '/signup/'
+    | '/admin/article/'
     | '/admin/tag/'
     | '/admin/user/'
   fileRoutesById: FileRoutesById
@@ -189,6 +209,7 @@ export interface RootRouteChildren {
   HomeIndexRoute: typeof HomeIndexRoute
   LoginIndexRoute: typeof LoginIndexRoute
   SignupIndexRoute: typeof SignupIndexRoute
+  AdminArticleIndexRoute: typeof AdminArticleIndexRoute
   AdminTagIndexRoute: typeof AdminTagIndexRoute
   AdminUserIndexRoute: typeof AdminUserIndexRoute
 }
@@ -199,6 +220,7 @@ const rootRouteChildren: RootRouteChildren = {
   HomeIndexRoute: HomeIndexRoute,
   LoginIndexRoute: LoginIndexRoute,
   SignupIndexRoute: SignupIndexRoute,
+  AdminArticleIndexRoute: AdminArticleIndexRoute,
   AdminTagIndexRoute: AdminTagIndexRoute,
   AdminUserIndexRoute: AdminUserIndexRoute,
 }
@@ -218,6 +240,7 @@ export const routeTree = rootRoute
         "/home/",
         "/login/",
         "/signup/",
+        "/admin/article/",
         "/admin/tag/",
         "/admin/user/"
       ]
@@ -236,6 +259,9 @@ export const routeTree = rootRoute
     },
     "/signup/": {
       "filePath": "~signup/~index.tsx"
+    },
+    "/admin/article/": {
+      "filePath": "~admin/~article/~index.tsx"
     },
     "/admin/tag/": {
       "filePath": "~admin/~tag/~index.tsx"
