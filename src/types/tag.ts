@@ -3,5 +3,5 @@ export type Tag = {
   name: string;
   description: string;
   articleManagerId: number;
-  createdAt: Date;
+  createdat: Date;
 };

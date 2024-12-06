@@ -6,10 +6,10 @@ import NotFound from '@/components/not-found';
 import { useAuthStore } from '@/stores/auth';
 
 export const Route = createFileRoute('/admin/')({
-  component: AdminPrinterPage,
+  component: AdminPage,
 });
 
-function AdminPrinterPage() {
+function AdminPage() {
   const { isAuthenticated } = useAuthStore();
 
   return (
@@ -28,7 +28,7 @@ function AdminPrinterPage() {
                 User Management
               </Link>
               <Link
-                to={'/admin/user'}
+                to={'/admin/tag'}
                 className="flex h-32 w-full flex-row items-center justify-center rounded-lg border border-primary bg-white text-2xl font-bold text-primary shadow-lg transition-all duration-100 hover:bg-primary hover:text-white"
               >
                 Tag Management

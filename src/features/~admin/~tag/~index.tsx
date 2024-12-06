@@ -1,29 +1,30 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
-import { useEffect, useState } from 'react';
+import * as React from 'react';
+import { useState, useEffect } from 'react';
 
 import Footer from '@/components/footer';
 import Header from '@/components/header';
-import { userService } from '@/services/user.service';
-import { User } from '@/types';
+import { tagService } from '@/services/tag.service';
+import { Tag } from '@/types';
 
-export const Route = createFileRoute('/admin/user/')({
-  component: AdminUserPage,
+export const Route = createFileRoute('/admin/tag/')({
+  component: AdminTagPage,
 });
 
-function AdminUserPage() {
-  const [userList, setUserList] = useState<User[]>([]);
+function AdminTagPage() {
+  const [tagList, setTagList] = useState<Tag[]>([]);
 
   useEffect(() => {
-    const fetchUserList = async () => {
+    const fetchTagList = async () => {
       try {
-        const fetchedUserList = await userService.getAll();
-        setUserList(fetchedUserList?.data as unknown as User[]);
+        const fetchedTagList = await tagService.getAll();
+        setTagList(fetchedTagList?.data as unknown as Tag[]);
       } catch (error) {
-        console.error('Failed to fetch user list:', error);
+        console.error('Failed to fetch tag list:', error);
       }
     };
 
-    fetchUserList();
+    fetchTagList();
   }, []);
 
   return (
@@ -44,7 +45,7 @@ function AdminUserPage() {
               <p>Back</p>
             </Link>
             <div className="mb-8 flex w-full flex-row items-center justify-between">
-              <p className="text-2xl font-bold text-primary">User List</p>
+              <p className="text-2xl font-bold text-primary">Tag List</p>
               {/* <Button
                 onClick={handleCreate}
                 theme="primary"
@@ -62,36 +63,30 @@ function AdminUserPage() {
                 <div className="col-span-3 flex flex-row items-center justify-start">
                   Name
                 </div>
-                <div className="col-span-2 flex flex-row items-center justify-start">
-                  Username
-                </div>
-                <div className="col-span-3 flex flex-row items-center justify-start">
-                  Email
+                <div className="col-span-5 flex flex-row items-center justify-start">
+                  Description
                 </div>
                 <div className="col-span-3 flex flex-row items-center justify-start">
                   Created At
                 </div>
               </div>
-              {userList.map((user: User, index) => (
+              {tagList.map((tag: Tag, index) => (
                 <Link
                   className="grid h-16 w-full grid-cols-12 gap-4 border-b bg-white transition-all duration-100 hover:bg-slate-100"
-                  key={user.userid}
-                  to={`/user/${user.userid}`}
+                  key={tag.id}
+                  to={`/tag/${tag.id}`}
                 >
                   <div className="flex flex-row items-center justify-center">
                     {index + 1}
                   </div>
                   <div className="col-span-3 flex flex-row items-center justify-start">
-                    {user.name}
+                    {tag.name}
                   </div>
-                  <div className="col-span-2 flex flex-row items-center justify-start">
-                    {user.username}
-                  </div>
-                  <div className="col-span-3 flex flex-row items-center justify-start">
-                    {user.email}
+                  <div className="col-span-5 flex flex-row items-center justify-start">
+                    {tag.description}
                   </div>
                   <div className="col-span-3 flex flex-row items-center justify-start">
-                    {new Date(user.createdat).toLocaleString()}
+                    {new Date(tag.createdat).toLocaleString()}
                   </div>
                 </Link>
               ))}
