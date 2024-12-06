@@ -22,28 +22,28 @@ function AdminPrinterPage() {
           ) : (
             <div className="grid size-full grid-cols-4 gap-8">
               <Link
-                to={'/admin/printer'}
+                to={'/admin/user'}
                 className="flex h-32 w-full flex-row items-center justify-center rounded-lg border border-primary bg-white text-2xl font-bold text-primary shadow-lg transition-all duration-100 hover:bg-primary hover:text-white"
               >
-                Users Management
+                User Management
               </Link>
               <Link
-                to={'/admin/log'}
+                to={'/admin/user'}
                 className="flex h-32 w-full flex-row items-center justify-center rounded-lg border border-primary bg-white text-2xl font-bold text-primary shadow-lg transition-all duration-100 hover:bg-primary hover:text-white"
               >
                 Tag Management
               </Link>
               <Link
-                to={'/admin/allocate'}
+                to={'/admin/user'}
                 className="flex h-32 w-full flex-row items-center justify-center rounded-lg border border-primary bg-white text-2xl font-bold text-primary shadow-lg transition-all duration-100 hover:bg-primary hover:text-white"
               >
                 Article Management
               </Link>
               <Link
-                to={'/admin/allocate'}
+                to={'/admin/user'}
                 className="flex h-32 w-full flex-row items-center justify-center rounded-lg border border-primary bg-white text-2xl font-bold text-primary shadow-lg transition-all duration-100 hover:bg-primary hover:text-white"
               >
-                Commment Management
+                Comment Management
               </Link>
             </div>
           )}
