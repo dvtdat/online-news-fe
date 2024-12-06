@@ -15,7 +15,11 @@ import { Route as IndexImport } from './features/~index'
 import { Route as LoginIndexImport } from './features/~login/~index'
 import { Route as HomeIndexImport } from './features/~home/~index'
 import { Route as AdminIndexImport } from './features/~admin/~index'
-import { Route as AdminIdIndexImport } from './features/~admin/~$id/~index'
+import { Route as AdminPrinterIndexImport } from './features/~admin/~printer/~index'
+import { Route as AdminLogIndexImport } from './features/~admin/~log/~index'
+import { Route as AdminAllocateIndexImport } from './features/~admin/~allocate/~index'
+import { Route as AdminPrinterIdIndexImport } from './features/~admin/~printer/~$id/~index'
+import { Route as AdminAllocateIdIndexImport } from './features/~admin/~allocate/~$id/~index'
 
 // Create/Update Routes
 
@@ -43,9 +47,33 @@ const AdminIndexRoute = AdminIndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const AdminIdIndexRoute = AdminIdIndexImport.update({
-  id: '/admin/$id/',
-  path: '/admin/$id/',
+const AdminPrinterIndexRoute = AdminPrinterIndexImport.update({
+  id: '/admin/printer/',
+  path: '/admin/printer/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const AdminLogIndexRoute = AdminLogIndexImport.update({
+  id: '/admin/log/',
+  path: '/admin/log/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const AdminAllocateIndexRoute = AdminAllocateIndexImport.update({
+  id: '/admin/allocate/',
+  path: '/admin/allocate/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const AdminPrinterIdIndexRoute = AdminPrinterIdIndexImport.update({
+  id: '/admin/printer/$id/',
+  path: '/admin/printer/$id/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const AdminAllocateIdIndexRoute = AdminAllocateIdIndexImport.update({
+  id: '/admin/allocate/$id/',
+  path: '/admin/allocate/$id/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -81,11 +109,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginIndexImport
       parentRoute: typeof rootRoute
     }
-    '/admin/$id/': {
-      id: '/admin/$id/'
-      path: '/admin/$id'
-      fullPath: '/admin/$id'
-      preLoaderRoute: typeof AdminIdIndexImport
+    '/admin/allocate/': {
+      id: '/admin/allocate/'
+      path: '/admin/allocate'
+      fullPath: '/admin/allocate'
+      preLoaderRoute: typeof AdminAllocateIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/admin/log/': {
+      id: '/admin/log/'
+      path: '/admin/log'
+      fullPath: '/admin/log'
+      preLoaderRoute: typeof AdminLogIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/admin/printer/': {
+      id: '/admin/printer/'
+      path: '/admin/printer'
+      fullPath: '/admin/printer'
+      preLoaderRoute: typeof AdminPrinterIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/admin/allocate/$id/': {
+      id: '/admin/allocate/$id/'
+      path: '/admin/allocate/$id'
+      fullPath: '/admin/allocate/$id'
+      preLoaderRoute: typeof AdminAllocateIdIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/admin/printer/$id/': {
+      id: '/admin/printer/$id/'
+      path: '/admin/printer/$id'
+      fullPath: '/admin/printer/$id'
+      preLoaderRoute: typeof AdminPrinterIdIndexImport
       parentRoute: typeof rootRoute
     }
   }
@@ -98,7 +154,11 @@ export interface FileRoutesByFullPath {
   '/admin': typeof AdminIndexRoute
   '/home': typeof HomeIndexRoute
   '/login': typeof LoginIndexRoute
-  '/admin/$id': typeof AdminIdIndexRoute
+  '/admin/allocate': typeof AdminAllocateIndexRoute
+  '/admin/log': typeof AdminLogIndexRoute
+  '/admin/printer': typeof AdminPrinterIndexRoute
+  '/admin/allocate/$id': typeof AdminAllocateIdIndexRoute
+  '/admin/printer/$id': typeof AdminPrinterIdIndexRoute
 }
 
 export interface FileRoutesByTo {
@@ -106,7 +166,11 @@ export interface FileRoutesByTo {
   '/admin': typeof AdminIndexRoute
   '/home': typeof HomeIndexRoute
   '/login': typeof LoginIndexRoute
-  '/admin/$id': typeof AdminIdIndexRoute
+  '/admin/allocate': typeof AdminAllocateIndexRoute
+  '/admin/log': typeof AdminLogIndexRoute
+  '/admin/printer': typeof AdminPrinterIndexRoute
+  '/admin/allocate/$id': typeof AdminAllocateIdIndexRoute
+  '/admin/printer/$id': typeof AdminPrinterIdIndexRoute
 }
 
 export interface FileRoutesById {
@@ -115,15 +179,47 @@ export interface FileRoutesById {
   '/admin/': typeof AdminIndexRoute
   '/home/': typeof HomeIndexRoute
   '/login/': typeof LoginIndexRoute
-  '/admin/$id/': typeof AdminIdIndexRoute
+  '/admin/allocate/': typeof AdminAllocateIndexRoute
+  '/admin/log/': typeof AdminLogIndexRoute
+  '/admin/printer/': typeof AdminPrinterIndexRoute
+  '/admin/allocate/$id/': typeof AdminAllocateIdIndexRoute
+  '/admin/printer/$id/': typeof AdminPrinterIdIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/admin' | '/home' | '/login' | '/admin/$id'
+  fullPaths:
+    | '/'
+    | '/admin'
+    | '/home'
+    | '/login'
+    | '/admin/allocate'
+    | '/admin/log'
+    | '/admin/printer'
+    | '/admin/allocate/$id'
+    | '/admin/printer/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/admin' | '/home' | '/login' | '/admin/$id'
-  id: '__root__' | '/' | '/admin/' | '/home/' | '/login/' | '/admin/$id/'
+  to:
+    | '/'
+    | '/admin'
+    | '/home'
+    | '/login'
+    | '/admin/allocate'
+    | '/admin/log'
+    | '/admin/printer'
+    | '/admin/allocate/$id'
+    | '/admin/printer/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin/'
+    | '/home/'
+    | '/login/'
+    | '/admin/allocate/'
+    | '/admin/log/'
+    | '/admin/printer/'
+    | '/admin/allocate/$id/'
+    | '/admin/printer/$id/'
   fileRoutesById: FileRoutesById
 }
 
@@ -132,7 +228,11 @@ export interface RootRouteChildren {
   AdminIndexRoute: typeof AdminIndexRoute
   HomeIndexRoute: typeof HomeIndexRoute
   LoginIndexRoute: typeof LoginIndexRoute
-  AdminIdIndexRoute: typeof AdminIdIndexRoute
+  AdminAllocateIndexRoute: typeof AdminAllocateIndexRoute
+  AdminLogIndexRoute: typeof AdminLogIndexRoute
+  AdminPrinterIndexRoute: typeof AdminPrinterIndexRoute
+  AdminAllocateIdIndexRoute: typeof AdminAllocateIdIndexRoute
+  AdminPrinterIdIndexRoute: typeof AdminPrinterIdIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -140,7 +240,11 @@ const rootRouteChildren: RootRouteChildren = {
   AdminIndexRoute: AdminIndexRoute,
   HomeIndexRoute: HomeIndexRoute,
   LoginIndexRoute: LoginIndexRoute,
-  AdminIdIndexRoute: AdminIdIndexRoute,
+  AdminAllocateIndexRoute: AdminAllocateIndexRoute,
+  AdminLogIndexRoute: AdminLogIndexRoute,
+  AdminPrinterIndexRoute: AdminPrinterIndexRoute,
+  AdminAllocateIdIndexRoute: AdminAllocateIdIndexRoute,
+  AdminPrinterIdIndexRoute: AdminPrinterIdIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -157,7 +261,11 @@ export const routeTree = rootRoute
         "/admin/",
         "/home/",
         "/login/",
-        "/admin/$id/"
+        "/admin/allocate/",
+        "/admin/log/",
+        "/admin/printer/",
+        "/admin/allocate/$id/",
+        "/admin/printer/$id/"
       ]
     },
     "/": {
@@ -172,8 +280,20 @@ export const routeTree = rootRoute
     "/login/": {
       "filePath": "~login/~index.tsx"
     },
-    "/admin/$id/": {
-      "filePath": "~admin/~$id/~index.tsx"
+    "/admin/allocate/": {
+      "filePath": "~admin/~allocate/~index.tsx"
+    },
+    "/admin/log/": {
+      "filePath": "~admin/~log/~index.tsx"
+    },
+    "/admin/printer/": {
+      "filePath": "~admin/~printer/~index.tsx"
+    },
+    "/admin/allocate/$id/": {
+      "filePath": "~admin/~allocate/~$id/~index.tsx"
+    },
+    "/admin/printer/$id/": {
+      "filePath": "~admin/~printer/~$id/~index.tsx"
     }
   }
 }

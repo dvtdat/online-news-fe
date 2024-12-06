@@ -6,7 +6,7 @@ const Footer = () => {
       <div className="my-14 grid size-full grid-cols-2 gap-10 2xl:grid-cols-4">
         <div className="size-full items-center justify-center">
           <Logo />
-          <div className="mt-4 w-3/4">© 2024 Online News Project.</div>
+          <div className="mt-4 w-3/4">© 2024 Online News Platform</div>
         </div>
         <div></div>
         <div>
@@ -17,7 +17,7 @@ const Footer = () => {
         <div>
           <div className="text-lg font-bold">Project Information</div>
           <div className="mt-4">HCMC University of Technology</div>
-          <div className="mt-2">Database Systems (CO2013)</div>
+          <div className="mt-2">Database Systems Course (CO2013)</div>
           <div className="mt-2">Supervised by Mr. Do Thanh Thai</div>
         </div>
       </div>

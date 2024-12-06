@@ -55,15 +55,8 @@ function LoginPage() {
                   BK<span className="text-hcmut-light">News</span>
                 </div>
                 <div className="mt-2 text-xl font-bold text-hcmut-dark">
-                  Dịch vụ in ấn thông minh
+                  Online News Platform
                 </div>
-
-                <div className="mt-5 w-full px-10 text-center text-sm font-light text-neutral">
-                  Dịch vụ in ấn thông minh được kết nối với tài khoản MyBK của
-                  sinh viên, vui lòng sử dụng tài khoản, mật khẩu từ hệ thống
-                  MyBK để đăng nhập
-                </div>
-
                 {!isAuthenticated ? (
                   <form
                     onSubmit={formik.handleSubmit}
@@ -116,17 +109,16 @@ function LoginPage() {
                       size="large"
                       className="mt-4"
                     >
-                      Đăng Nhập
+                      Log In
                     </Button>
                   </form>
                 ) : (
                   <div className="size-full">
                     <div className="mt-16 w-full px-10 text-center text-lg font-bold text-primary">
-                      Xin chào {email}!
+                      Hello {email}!
                     </div>
                     <div className="mt-3 w-full px-16 text-center text-sm font-light text-neutral">
-                      Vui lòng đăng xuất nếu bạn muốn truy cập bằng tài khoản
-                      khác
+                      Please logout if you want to access with another account
                     </div>
                   </div>
                 )}

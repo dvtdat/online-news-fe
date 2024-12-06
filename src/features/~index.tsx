@@ -25,7 +25,7 @@ function LandingPage() {
                   BK<span className="text-hcmut-light">News</span>
                 </div>
                 <div className="mt-2 text-xl font-bold text-hcmut-dark">
-                  Dịch vụ in ấn thông minh
+                  Online News Platform
                 </div>
 
                 {!isAuthenticated ? (
@@ -40,20 +40,7 @@ function LandingPage() {
                       size="large"
                       className="mt-10"
                     >
-                      Log In as User
-                    </Button>
-
-                    <Button
-                      onClick={() => {
-                        navigate({ to: '/login' });
-                      }}
-                      theme="neutral"
-                      variant="outlined"
-                      width="full"
-                      className="mt-3"
-                      size="large"
-                    >
-                      Log In as SPSO
+                      Log In
                     </Button>
                   </>
                 ) : (

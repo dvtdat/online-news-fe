@@ -44,13 +44,14 @@ const PrinterDetail = ({ printer }: PrinterDetailProp) => {
       paperAvailable: printer.paperAvailable,
     };
     setPrinterList(printerList);
+    alert('Printer updated');
   };
 
   return (
     <div className="mt-4 flex w-full flex-col space-y-8 pr-10">
       <div className="w-1/2">
         <div className="w-full text-lg font-medium text-neutral">
-          Tên máy in
+          Printer Name
         </div>
         <input
           id="name"
@@ -63,7 +64,7 @@ const PrinterDetail = ({ printer }: PrinterDetailProp) => {
       </div>
 
       <div className="w-1/2">
-        <div className="w-full text-lg font-medium text-neutral">Vị trí</div>
+        <div className="w-full text-lg font-medium text-neutral">Location</div>
         <Select
           options={locationOptions.filter(
             (x) => !printer.location.includes(x.value),
@@ -74,13 +75,13 @@ const PrinterDetail = ({ printer }: PrinterDetailProp) => {
               setLocation(selectedOption.value as Location);
             }
           }}
-          placeholder={'Chọn vị trí'}
+          placeholder={'Choose Location'}
           className="mt-3 w-full"
         />
       </div>
 
       <div className="w-1/2">
-        <div className="w-full text-lg font-medium text-neutral">Loại máy</div>
+        <div className="w-full text-lg font-medium text-neutral">Type</div>
         <Select
           options={typeOptions.filter((x) => !printer.type.includes(x.value))}
           value={typeOptions.find((option) => option.value === type)}
@@ -89,14 +90,14 @@ const PrinterDetail = ({ printer }: PrinterDetailProp) => {
               setType(selectedOption.value as PrinterType);
             }
           }}
-          placeholder={'Chọn vị trí'}
+          placeholder={'Choose Type'}
           className="mt-3 w-full"
         />
       </div>
 
       <div className="w-1/2">
         <div className="w-full text-lg font-medium text-neutral">
-          Số lượng giấy in
+          Paper Quantity
         </div>
         <input
           id="status"
@@ -109,9 +110,7 @@ const PrinterDetail = ({ printer }: PrinterDetailProp) => {
       </div>
 
       <div className="w-1/2">
-        <div className="w-full text-lg font-medium text-neutral">
-          Trạng thái
-        </div>
+        <div className="w-full text-lg font-medium text-neutral">Status</div>
         <Select
           options={statusOptions}
           value={statusOptions.find((option) => option.value === status)}
@@ -120,7 +119,7 @@ const PrinterDetail = ({ printer }: PrinterDetailProp) => {
               setStatus(selectedOption.value as Status);
             }
           }}
-          placeholder={'Chọn trạng thái'}
+          placeholder={'Choose Status'}
           className="mt-3 w-full"
         />
       </div>
@@ -131,7 +130,7 @@ const PrinterDetail = ({ printer }: PrinterDetailProp) => {
           variant="contained"
           width="full"
         >
-          Xác nhận
+          Confirm
         </Button>
       </div>
     </div>

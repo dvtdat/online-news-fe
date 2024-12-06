@@ -1,6 +1,6 @@
 export enum Status {
-  GOOD = 'Đang hoạt động',
-  STOPPED = 'Không hoạt động',
+  GOOD = 'Working',
+  STOPPED = 'Not Working',
 }
 
 export enum PrinterType {

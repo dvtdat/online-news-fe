@@ -7,7 +7,7 @@ export const printers: Printer[] = [
     status: Status.GOOD,
     type: PrinterType.CANON,
     location: Location.A2_CS1,
-    paperAvailable: 100,
+    paperAvailable: 110,
   },
   {
     id: 2,
@@ -104,5 +104,13 @@ export const printers: Printer[] = [
     type: PrinterType.CANON,
     location: Location.C5_CS1,
     paperAvailable: 115,
+  },
+  {
+    id: 14,
+    name: 'HCMUT-SSPS XX',
+    status: Status.GOOD,
+    type: PrinterType.CANON,
+    location: Location.A2_CS1,
+    paperAvailable: 0,
   },
 ];
