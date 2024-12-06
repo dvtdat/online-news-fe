@@ -20,7 +20,7 @@ function LandingPage() {
         <div className="h-screen min-h-0 bg-[url('/images/home.jpeg')] bg-cover bg-fixed">
           <div className="relative flex h-full flex-row items-center justify-center bg-primary/[0.7] px-5 pt-0 xl:px-[calc(160px-(1920px-100vw)/3)]">
             <div className="flex size-2/5 flex-col items-center justify-center rounded-lg bg-white p-10">
-              <div className="flex size-fit flex-col items-center">
+              <div className="flex size-full flex-col items-center">
                 <div className="text-7xl font-black text-hcmut-dark">
                   BK<span className="text-hcmut-light">News</span>
                 </div>
@@ -41,6 +41,19 @@ function LandingPage() {
                       className="mt-10"
                     >
                       Log In
+                    </Button>
+
+                    <Button
+                      onClick={() => {
+                        navigate({ to: '/signup' });
+                      }}
+                      theme="neutral"
+                      variant="outlined"
+                      width="full"
+                      size="large"
+                      className="mt-4"
+                    >
+                      Sign Up
                     </Button>
                   </>
                 ) : (

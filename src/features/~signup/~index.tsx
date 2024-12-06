@@ -5,37 +5,52 @@ import * as Yup from 'yup';
 import { Button } from '@/components/button';
 import Footer from '@/components/footer';
 import Header from '@/components/header';
+import { emailRegex } from '@/data/auth-data';
 import { authService } from '@/services/auth.service';
 import { useAuthStore } from '@/stores/auth';
 
-export const Route = createFileRoute('/login/')({
-  component: LoginPage,
+export const Route = createFileRoute('/signup/')({
+  component: SignUpPage,
 });
 
-function LoginPage() {
+function SignUpPage() {
   const {
     setIsAuthenticated,
+    setName,
     setUsername,
     isAuthenticated,
-    setName,
     name,
     setIsAdmin,
   } = useAuthStore();
 
   const formik = useFormik({
     initialValues: {
+      name: '',
       username: '',
+      email: '',
       password: '',
       rememberMe: false,
     },
     validationSchema: Yup.object({
+      name: Yup.string().required('Please enter your name'),
       username: Yup.string().required('Please enter your username'),
+      email: Yup.string()
+        .matches(emailRegex, 'Email must be a BKNetID email (@hcmut.edu.vn).')
+        .required('Please enter your email'),
       password: Yup.string().required('Please enter your password'),
       rememberMe: Yup.boolean(),
     }),
     onSubmit: async () => {
+      const createUserDto = {
+        name: formik.values.name,
+        username: formik.values.username,
+        email: formik.values.email,
+        password: formik.values.password,
+        role: 'user',
+      };
+
       await authService
-        .login(formik.values.username, formik.values.password)
+        .signup(createUserDto)
         .then((res) => {
           setIsAuthenticated(true);
           setName(res.data.name);
@@ -43,7 +58,7 @@ function LoginPage() {
           setIsAdmin(res.data.name.includes('Admin'));
         })
         .catch((error) => {
-          console.error('Login failed', error);
+          console.error('Sign Up failed', error);
         });
     },
   });
@@ -70,18 +85,56 @@ function LoginPage() {
                     <div className="relative flex w-full flex-col gap-2">
                       <div className="relative flex w-full flex-col items-start justify-start gap-2">
                         <input
+                          id="name"
+                          name="name"
+                          type="text"
+                          onChange={formik.handleChange}
+                          onBlur={formik.handleBlur}
+                          value={formik.values.name}
+                          placeholder="Name"
+                          className={`${formik.touched.name && formik.errors.name ? 'border-red' : 'border-neutral'} w-full rounded border border-solid p-3 focus:border-primary`}
+                        />
+                        {formik.touched.name && formik.errors.name ? (
+                          <div className="flex text-red">
+                            {formik.errors.name}
+                          </div>
+                        ) : null}
+                      </div>
+                    </div>
+                    <div className="relative flex w-full flex-col gap-2">
+                      <div className="relative flex w-full flex-col items-start justify-start gap-2">
+                        <input
                           id="username"
                           name="username"
                           type="text"
-                          placeholder="Username"
                           onChange={formik.handleChange}
                           onBlur={formik.handleBlur}
                           value={formik.values.username}
+                          placeholder="Username"
                           className={`${formik.touched.username && formik.errors.username ? 'border-red' : 'border-neutral'} w-full rounded border border-solid p-3 focus:border-primary`}
                         />
                         {formik.touched.username && formik.errors.username ? (
                           <div className="flex text-red">
                             {formik.errors.username}
+                          </div>
+                        ) : null}
+                      </div>
+                    </div>
+                    <div className="relative flex w-full flex-col gap-2">
+                      <div className="relative flex w-full flex-col items-start justify-start gap-2">
+                        <input
+                          id="email"
+                          name="email"
+                          type="text"
+                          onChange={formik.handleChange}
+                          onBlur={formik.handleBlur}
+                          value={formik.values.email}
+                          placeholder="BKNetID@hcmut.edu.vn"
+                          className={`${formik.touched.email && formik.errors.email ? 'border-red' : 'border-neutral'} w-full rounded border border-solid p-3 focus:border-primary`}
+                        />
+                        {formik.touched.email && formik.errors.email ? (
+                          <div className="flex text-red">
+                            {formik.errors.email}
                           </div>
                         ) : null}
                       </div>
@@ -114,7 +167,7 @@ function LoginPage() {
                       size="large"
                       className="mt-4"
                     >
-                      Log In
+                      Sign Up
                     </Button>
                   </form>
                 ) : (
