@@ -1,8 +1,8 @@
 export type Comment = {
-  articleId: number;
+  articleid: number;
   id: number;
-  guestId: number;
+  guestid: number;
   content: string;
-  isApproved: boolean;
-  createdAt: Date;
+  isapproved: boolean;
+  createdat: Date;
 };

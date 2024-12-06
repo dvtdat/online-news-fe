@@ -3,21 +3,22 @@ import { useEffect, useState } from 'react';
 
 import Footer from '@/components/footer';
 import Header from '@/components/header';
-import { articleService } from '@/services/article.service';
-import { Article, ArticleStatus } from '@/types';
-
-export const Route = createFileRoute('/admin/article/')({
-  component: AdminArticlePage,
+import { commentService } from '@/services/comment.service';
+import { Comment } from '@/types';
+// import { Article, ArticleStatus } from '@/types';
+export const Route = createFileRoute('/admin/comment/')({
+  component: AdminCommentPage,
 });
 
-function AdminArticlePage() {
-  const [articleList, setArticleList] = useState<Article[]>([]);
+function AdminCommentPage() {
+  // const [articleList, setArticleList] = useState<Article[]>([]);
+  const [commentList, setCommentList] = useState<Comment[]>([]);
 
   useEffect(() => {
     const fetchTagList = async () => {
       try {
-        const fetchedArticleList = await articleService.getAll();
-        setArticleList(fetchedArticleList?.data as unknown as Article[]);
+        const fetchedArticleList = await commentService.getAll();
+        setCommentList(fetchedArticleList?.data as unknown as Comment[]);
       } catch (error) {
         console.error('Failed to fetch tag list:', error);
       }
@@ -59,55 +60,39 @@ function AdminArticlePage() {
                 <div className="flex flex-row items-center justify-center">
                   #
                 </div>
-                <div className="col-span-2 flex flex-row items-center justify-start">
-                  Title
+                <div className="flex flex-row items-center justify-center">
+                  Article
                 </div>
-                <div className="col-span-2 flex flex-row items-center justify-start">
-                  Writer
+                <div className="col-span-2 flex flex-row items-center justify-center">
+                  Author
                 </div>
                 <div className="col-span-2 flex flex-row items-center justify-start">
                   Created At
                 </div>
-                <div className="col-span-2 flex flex-row items-center justify-start">
-                  Published At
-                </div>
-                <div className="col-span-3 flex flex-row items-center justify-center">
+                <div className="col-span-6 flex flex-row items-center justify-center">
                   Status
                 </div>
               </div>
-              {articleList.map((article: Article, index) => (
+              {commentList.map((comment: Comment, index) => (
                 <Link
                   className="grid h-16 w-full grid-cols-12 gap-4 border-b bg-white transition-all duration-100 hover:bg-slate-100"
-                  key={article.id}
-                  to={`/article/${article.id}`}
+                  key={comment.id}
+                  to={`/article/${comment.id}`}
                 >
                   <div className="flex flex-row items-center justify-center">
                     {index + 1}
                   </div>
-                  <div className="col-span-2 flex flex-row items-center justify-start">
-                    {article.title}
+                  <div className="flex flex-row items-center justify-center">
+                    {comment.articleid}
+                  </div>
+                  <div className="col-span-2 flex flex-row items-center justify-center">
+                    {comment.guestid}
                   </div>
                   <div className="col-span-2 flex flex-row items-center justify-start">
-                    {article.writerpenname}
+                    {new Date(comment.createdat).toLocaleString()}
                   </div>
-                  <div className="col-span-2 flex flex-row items-center justify-start">
-                    {new Date(article.createdat).toLocaleString()}
-                  </div>
-                  <div className="col-span-2 flex flex-row items-center justify-start">
-                    {article.publishedat
-                      ? new Date(article.publishedat).toLocaleString()
-                      : 'Not published'}
-                  </div>
-                  <div className="col-span-3 flex flex-row items-center justify-center">
-                    {article.status === ArticleStatus.DRAFT ? (
-                      <div className="flex h-3/5 w-2/5 flex-row items-center justify-center rounded-lg bg-gray-400 font-bold text-white">
-                        Draft
-                      </div>
-                    ) : article.status === ArticleStatus.PENDING ? (
-                      <div className="flex h-3/5 w-2/5 flex-row items-center justify-center rounded-lg bg-yellow font-bold text-white">
-                        Pending
-                      </div>
-                    ) : article.status === ArticleStatus.APPROVED ? (
+                  <div className="col-span-6 flex flex-row items-center justify-center">
+                    {comment.isapproved ? (
                       <div className="flex h-3/5 w-2/5 flex-row items-center justify-center rounded-lg bg-green font-bold text-white">
                         Approved
                       </div>
