@@ -1,7 +1,8 @@
+import config from '@/config/config';
 import { Article, Response } from '@/types';
 import { axios } from '@/utils/custom-axios';
 
-const API_URL = 'http://localhost:5000';
+const API_URL = config.API_URL;
 
 export type CreateArticleDto = {
   articleManagerId: number;

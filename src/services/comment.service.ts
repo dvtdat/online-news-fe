@@ -1,7 +1,8 @@
+import config from '@/config/config';
 import { Comment } from '@/types';
 import { axios } from '@/utils/custom-axios';
 
-const API_URL = 'http://localhost:5000';
+const API_URL = config.API_URL;
 
 export type CreateCommentDto = {
   articleId: number;

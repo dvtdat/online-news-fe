@@ -1,7 +1,8 @@
+import config from '@/config/config';
 import { Tag, Response } from '@/types';
 import { axios } from '@/utils/custom-axios';
 
-const API_URL = 'http://localhost:5000';
+const API_URL = config.API_URL;
 
 const getAll = () => {
   return axios.get<Response<Tag[]>>(`${API_URL}/tag`);

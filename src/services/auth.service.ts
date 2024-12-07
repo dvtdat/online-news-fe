@@ -1,8 +1,10 @@
+import config from '@/config/config';
 import { User } from '@/types';
 import { axios } from '@/utils/custom-axios';
 
 import { CreateUserDto } from './user.service';
-const API_URL = 'http://localhost:5000';
+
+const API_URL = config.API_URL;
 
 const login = (username: string, password: string) => {
   return axios.post<User>(`${API_URL}/auth/login`, {
