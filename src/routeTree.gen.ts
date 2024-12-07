@@ -20,6 +20,7 @@ import { Route as AdminUserIndexImport } from './features/~admin/~user/~index'
 import { Route as AdminTagIndexImport } from './features/~admin/~tag/~index'
 import { Route as AdminCommentIndexImport } from './features/~admin/~comment/~index'
 import { Route as AdminArticleIndexImport } from './features/~admin/~article/~index'
+import { Route as AdminUserIdIndexImport } from './features/~admin/~user/~$id/~index'
 
 // Create/Update Routes
 
@@ -74,6 +75,12 @@ const AdminCommentIndexRoute = AdminCommentIndexImport.update({
 const AdminArticleIndexRoute = AdminArticleIndexImport.update({
   id: '/admin/article/',
   path: '/admin/article/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const AdminUserIdIndexRoute = AdminUserIdIndexImport.update({
+  id: '/admin/user/$id/',
+  path: '/admin/user/$id/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -144,6 +151,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminUserIndexImport
       parentRoute: typeof rootRoute
     }
+    '/admin/user/$id/': {
+      id: '/admin/user/$id/'
+      path: '/admin/user/$id'
+      fullPath: '/admin/user/$id'
+      preLoaderRoute: typeof AdminUserIdIndexImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -159,6 +173,7 @@ export interface FileRoutesByFullPath {
   '/admin/comment': typeof AdminCommentIndexRoute
   '/admin/tag': typeof AdminTagIndexRoute
   '/admin/user': typeof AdminUserIndexRoute
+  '/admin/user/$id': typeof AdminUserIdIndexRoute
 }
 
 export interface FileRoutesByTo {
@@ -171,6 +186,7 @@ export interface FileRoutesByTo {
   '/admin/comment': typeof AdminCommentIndexRoute
   '/admin/tag': typeof AdminTagIndexRoute
   '/admin/user': typeof AdminUserIndexRoute
+  '/admin/user/$id': typeof AdminUserIdIndexRoute
 }
 
 export interface FileRoutesById {
@@ -184,6 +200,7 @@ export interface FileRoutesById {
   '/admin/comment/': typeof AdminCommentIndexRoute
   '/admin/tag/': typeof AdminTagIndexRoute
   '/admin/user/': typeof AdminUserIndexRoute
+  '/admin/user/$id/': typeof AdminUserIdIndexRoute
 }
 
 export interface FileRouteTypes {
@@ -198,6 +215,7 @@ export interface FileRouteTypes {
     | '/admin/comment'
     | '/admin/tag'
     | '/admin/user'
+    | '/admin/user/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -209,6 +227,7 @@ export interface FileRouteTypes {
     | '/admin/comment'
     | '/admin/tag'
     | '/admin/user'
+    | '/admin/user/$id'
   id:
     | '__root__'
     | '/'
@@ -220,6 +239,7 @@ export interface FileRouteTypes {
     | '/admin/comment/'
     | '/admin/tag/'
     | '/admin/user/'
+    | '/admin/user/$id/'
   fileRoutesById: FileRoutesById
 }
 
@@ -233,6 +253,7 @@ export interface RootRouteChildren {
   AdminCommentIndexRoute: typeof AdminCommentIndexRoute
   AdminTagIndexRoute: typeof AdminTagIndexRoute
   AdminUserIndexRoute: typeof AdminUserIndexRoute
+  AdminUserIdIndexRoute: typeof AdminUserIdIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -245,6 +266,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminCommentIndexRoute: AdminCommentIndexRoute,
   AdminTagIndexRoute: AdminTagIndexRoute,
   AdminUserIndexRoute: AdminUserIndexRoute,
+  AdminUserIdIndexRoute: AdminUserIdIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -265,7 +287,8 @@ export const routeTree = rootRoute
         "/admin/article/",
         "/admin/comment/",
         "/admin/tag/",
-        "/admin/user/"
+        "/admin/user/",
+        "/admin/user/$id/"
       ]
     },
     "/": {
@@ -294,6 +317,9 @@ export const routeTree = rootRoute
     },
     "/admin/user/": {
       "filePath": "~admin/~user/~index.tsx"
+    },
+    "/admin/user/$id/": {
+      "filePath": "~admin/~user/~$id/~index.tsx"
     }
   }
 }

@@ -74,7 +74,7 @@ function AdminTagPage() {
                 <Link
                   className="grid h-16 w-full grid-cols-12 gap-4 border-b bg-white transition-all duration-100 hover:bg-slate-100"
                   key={tag.id}
-                  to={`/tag/${tag.id}`}
+                  to={`/admin/tag/${tag.id}`}
                 >
                   <div className="flex flex-row items-center justify-center">
                     {index + 1}
