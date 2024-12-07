@@ -18,6 +18,7 @@ function LoginPage() {
     setUsername,
     isAuthenticated,
     setName,
+    setUserId,
     name,
     setIsAdmin,
   } = useAuthStore();
@@ -41,6 +42,8 @@ function LoginPage() {
           setName(res.data.name);
           setUsername(res.data.username);
           setIsAdmin(res.data.name.includes('Admin'));
+          setUserId(Number(res.data.userid));
+          console.log(res);
         })
         .catch((error) => {
           console.error('Login failed', error);

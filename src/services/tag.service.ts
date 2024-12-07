@@ -3,12 +3,17 @@ import { Tag, Response } from '@/types';
 import { axios } from '@/utils/custom-axios';
 
 const API_URL = config.API_URL;
+export type CreateTagDto = {
+  name: string;
+  description: string;
+  articleManagerId: number;
+};
 
 const getAll = () => {
   return axios.get<Response<Tag[]>>(`${API_URL}/tag`);
 };
-const create = (tag: Tag) => {
-  return axios.post<Response<Tag>>(`${API_URL}/tag`, tag);
+const create = (createTagDto: CreateTagDto) => {
+  return axios.post<Response<Tag>>(`${API_URL}/tag`, createTagDto);
 };
 
 const remove = (tagId: number) => {

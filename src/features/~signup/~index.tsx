@@ -21,6 +21,7 @@ function SignUpPage() {
     isAuthenticated,
     name,
     setIsAdmin,
+    setUserId,
   } = useAuthStore();
 
   const formik = useFormik({
@@ -56,6 +57,7 @@ function SignUpPage() {
           setName(res.data.name);
           setUsername(res.data.username);
           setIsAdmin(res.data.name.includes('Admin'));
+          setUserId(Number(res.data.userid));
         })
         .catch((error) => {
           console.error('Sign Up failed', error);
