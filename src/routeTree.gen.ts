@@ -21,6 +21,7 @@ import { Route as AdminTagIndexImport } from './features/~admin/~tag/~index'
 import { Route as AdminCommentIndexImport } from './features/~admin/~comment/~index'
 import { Route as AdminArticleIndexImport } from './features/~admin/~article/~index'
 import { Route as AdminUserIdIndexImport } from './features/~admin/~user/~$id/~index'
+import { Route as AdminArticleIdIndexImport } from './features/~admin/~article/~$id/~index'
 
 // Create/Update Routes
 
@@ -81,6 +82,12 @@ const AdminArticleIndexRoute = AdminArticleIndexImport.update({
 const AdminUserIdIndexRoute = AdminUserIdIndexImport.update({
   id: '/admin/user/$id/',
   path: '/admin/user/$id/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const AdminArticleIdIndexRoute = AdminArticleIdIndexImport.update({
+  id: '/admin/article/$id/',
+  path: '/admin/article/$id/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -151,6 +158,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminUserIndexImport
       parentRoute: typeof rootRoute
     }
+    '/admin/article/$id/': {
+      id: '/admin/article/$id/'
+      path: '/admin/article/$id'
+      fullPath: '/admin/article/$id'
+      preLoaderRoute: typeof AdminArticleIdIndexImport
+      parentRoute: typeof rootRoute
+    }
     '/admin/user/$id/': {
       id: '/admin/user/$id/'
       path: '/admin/user/$id'
@@ -173,6 +187,7 @@ export interface FileRoutesByFullPath {
   '/admin/comment': typeof AdminCommentIndexRoute
   '/admin/tag': typeof AdminTagIndexRoute
   '/admin/user': typeof AdminUserIndexRoute
+  '/admin/article/$id': typeof AdminArticleIdIndexRoute
   '/admin/user/$id': typeof AdminUserIdIndexRoute
 }
 
@@ -186,6 +201,7 @@ export interface FileRoutesByTo {
   '/admin/comment': typeof AdminCommentIndexRoute
   '/admin/tag': typeof AdminTagIndexRoute
   '/admin/user': typeof AdminUserIndexRoute
+  '/admin/article/$id': typeof AdminArticleIdIndexRoute
   '/admin/user/$id': typeof AdminUserIdIndexRoute
 }
 
@@ -200,6 +216,7 @@ export interface FileRoutesById {
   '/admin/comment/': typeof AdminCommentIndexRoute
   '/admin/tag/': typeof AdminTagIndexRoute
   '/admin/user/': typeof AdminUserIndexRoute
+  '/admin/article/$id/': typeof AdminArticleIdIndexRoute
   '/admin/user/$id/': typeof AdminUserIdIndexRoute
 }
 
@@ -215,6 +232,7 @@ export interface FileRouteTypes {
     | '/admin/comment'
     | '/admin/tag'
     | '/admin/user'
+    | '/admin/article/$id'
     | '/admin/user/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -227,6 +245,7 @@ export interface FileRouteTypes {
     | '/admin/comment'
     | '/admin/tag'
     | '/admin/user'
+    | '/admin/article/$id'
     | '/admin/user/$id'
   id:
     | '__root__'
@@ -239,6 +258,7 @@ export interface FileRouteTypes {
     | '/admin/comment/'
     | '/admin/tag/'
     | '/admin/user/'
+    | '/admin/article/$id/'
     | '/admin/user/$id/'
   fileRoutesById: FileRoutesById
 }
@@ -253,6 +273,7 @@ export interface RootRouteChildren {
   AdminCommentIndexRoute: typeof AdminCommentIndexRoute
   AdminTagIndexRoute: typeof AdminTagIndexRoute
   AdminUserIndexRoute: typeof AdminUserIndexRoute
+  AdminArticleIdIndexRoute: typeof AdminArticleIdIndexRoute
   AdminUserIdIndexRoute: typeof AdminUserIdIndexRoute
 }
 
@@ -266,6 +287,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminCommentIndexRoute: AdminCommentIndexRoute,
   AdminTagIndexRoute: AdminTagIndexRoute,
   AdminUserIndexRoute: AdminUserIndexRoute,
+  AdminArticleIdIndexRoute: AdminArticleIdIndexRoute,
   AdminUserIdIndexRoute: AdminUserIdIndexRoute,
 }
 
@@ -288,6 +310,7 @@ export const routeTree = rootRoute
         "/admin/comment/",
         "/admin/tag/",
         "/admin/user/",
+        "/admin/article/$id/",
         "/admin/user/$id/"
       ]
     },
@@ -317,6 +340,9 @@ export const routeTree = rootRoute
     },
     "/admin/user/": {
       "filePath": "~admin/~user/~index.tsx"
+    },
+    "/admin/article/$id/": {
+      "filePath": "~admin/~article/~$id/~index.tsx"
     },
     "/admin/user/$id/": {
       "filePath": "~admin/~user/~$id/~index.tsx"

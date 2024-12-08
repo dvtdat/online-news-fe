@@ -6,7 +6,7 @@ export enum ArticleStatus {
 }
 
 export type Article = {
-  id: number;
+  articleid: number;
   articleManagerId: number;
   writerpenname: string;
   title: string;
